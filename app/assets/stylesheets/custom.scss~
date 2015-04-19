@@ -1,0 +1,12 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.overlay
+{top:0;
+ left:0;
+ align:center;
+ background-color: rgba(0,0,0,0.15);
+ border-top-left-radius:30px;
+ border-top-right-radius:30px;
+ border-bottom-left-radius:30px;
+ border-bottom-right-radius:30px;	
+}

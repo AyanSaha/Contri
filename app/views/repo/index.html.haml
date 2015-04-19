@@ -1,0 +1,10 @@
+%h2 Find efforts in git hub
+.overlay
+ Paste the github repository link to monitor
+ = form_for :repo do
+  = label_tag(:r, "Repository:")  
+  = text_field_tag(:r)  
+ .text
+  = submit_tag("Monitor")
+
+

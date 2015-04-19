@@ -1,0 +1,11 @@
+%h2 Find efforts in git hub
+= form_for :repo , url :repos_path do |f|
+  = label_tag(:q, "Username:") 
+    = text_field_tag(:q) 
+ %p
+  = label_tag(:r, "Repository:") 
+  = text_field_tag(:r)  
+ %p
+  = submit_tag("Search")
+
+
