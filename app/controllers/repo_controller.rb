@@ -1,13 +1,16 @@
 class RepoController < ApplicationController
-def index
-
-user=params[:q]
-puts user
-repo=params[:r]
- puts repo
-#client = Octokit::Client.new(:login => user, :password => 'Ayan#884188')
-# Fetch the current user
- #render :json => client.user
-
+def analyse
+ puts "HI"
+ url=params[:r]
+ puts url
+   if url=~ /^https?:\/\/github.com(\/*)(\/*)/
+     user_name = url.split('/')[3]
+     repo_name = url.split('/')[4]
+     repo_name = repo_name.split('.')[0]
+     puts user_name
+     puts repo_name
+ puts Github.repos.list user: user_name
+ 
+ end
  end
 end

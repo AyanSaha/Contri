@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'repo#index'
-  resources :repo
+  root 'repo#analyse'
+  post 'repo/analyse' => 'repo#analyse'
   # Example of regular route:
      #get 'products/:id' => 'catalog#view'
 

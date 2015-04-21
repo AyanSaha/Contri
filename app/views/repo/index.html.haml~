@@ -1,11 +1,10 @@
 %h2 Find efforts in git hub
-= form_for :repo , url :repos_path do |f|
-  = label_tag(:q, "Username:") 
-    = text_field_tag(:q) 
- %p
-  = label_tag(:r, "Repository:") 
-  = text_field_tag(:r)  
- %p
-  = submit_tag("Search")
+.overlay
+ 
+ %form{:controller => 'repo', :action => 'analyse', :method => 'post', :data => {:remote => 'true'}}
+  %p Paste the github repository link to monitor
+  %input#r{:name => "r" , :type => "text"} 
+
+   %input{:type => "submit", :value => "Monitor"}
 
 
