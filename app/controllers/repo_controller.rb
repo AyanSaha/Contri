@@ -9,8 +9,14 @@ def analyse
      repo_name = repo_name.split('.')[0]
      puts user_name
      puts repo_name
- puts Github.repos.list user: user_name
  
- end
+  #   user=Octokit.user 'AyanSaha'
+ puts "Listing all repositories of #{user_name}"
+    repos=Octokit.repositories(user_name)
+     repos.each do |repo|
+          puts repo.name
+       end
+     
+   end
  end
 end
