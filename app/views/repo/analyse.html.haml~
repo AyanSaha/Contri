@@ -1,9 +1,11 @@
 %h2 Find efforts in git hub
+=link_to "Sign_in by github" , :controller => 'repo' , :action => 'omni'
 .overlay
  
  %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post', :data => {:remote => 'true'}}
   %p Paste the github repository link to monitor
-  = f.text_area :field_value_long, :rows => 5, :class => "span6", :placeholder => 'Enter text.'
+  %input#r{:name => "r" , :type => "text", :size => "35"} 
+
    %input{:type => "submit", :value => "Monitor"}
 
 

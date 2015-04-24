@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'repo#analyse'
   post 'repo/analyse' => 'repo#analyse'
+  get 'repo/omni' => 'repo#omni'
+  #get '/signout' => 'sessions#destroy', as: :signout
+ 
   # Example of regular route:
      #get 'products/:id' => 'catalog#view'
 
