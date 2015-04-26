@@ -1,6 +1,10 @@
 %h2 Find efforts in git hub
-=link_to "Sign_in by github" , :controller => 'repo' , :action => 'omni'
-.overlay
+- if current_user
+ "Welcome #{current_user.name}"
+ = link_to "Signout", signout_path
+- else
+ = link_to "Sign in with Github", "/auth/github"
+.overlays
  
  %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post', :data => {:remote => 'true'}}
   %p Paste the github repository link to monitor
