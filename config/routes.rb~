@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'repo#analyse'
   post 'repo/analyse' => 'repo#analyse'
-  get "/auth/:provider/callback" => "sessions#create"
-  get '/signout' => 'sessions#destroy', as: :signout
- 
+  get "/auth/:provider/callback" => "repo#create"
+  get '/signout' => 'repo#destroy', as: :signout
+  get 'repo/show' => 'repo#show'
   # Example of regular route:
      #get 'products/:id' => 'catalog#view'
 

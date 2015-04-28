@@ -1,15 +1,12 @@
-%h2 Find efforts in git hub
-- if current_user
- "Welcome #{current_user.name}"
- = link_to "Signout", signout_path
-- else
- = link_to "Sign in with Github", "/auth/github"
-.overlays
+%h2 Details
+- if @repos
+  Repositories of:
+  %i 
+  =@user.name 
  
- %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post', :data => {:remote => 'true'}}
-  %p Paste the github repository link to monitor
-  %input#r{:name => "r" , :type => "text", :size => "35"} 
-
-   %input{:type => "submit", :value => "Monitor"}
-
+  
+  - @repos.each do |repo|
+    %br
+    =repo.name
+  
 
