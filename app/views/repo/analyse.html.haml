@@ -1,11 +1,20 @@
-%h2 Find efforts in git hub
-=link_to "Sign_in by github" , :controller => 'repo' , :action => 'omni'
-.overlays
+%h2 Details
+<div id="myfirstchart" style="height: 250px;">
  
- %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post', :data => {:remote => 'true'}}
-  %p Paste the github repository link to monitor
-  %input#r{:name => "r" , :type => "text", :size => "35"} 
-
-   %input{:type => "submit", :value => "Monitor"}
-
-
+</div>
+- if @repos
+  Repositories of:
+  %b 
+  =@user.name 
+ 
+  
+  - @repos.each do |repo|
+    %br
+    =repo.name
+- if @contribs
+  Contributors are:
+  - @contribs.each do |contributors|
+    %b
+    
+    =contributors.login
+  

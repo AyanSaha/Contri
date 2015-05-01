@@ -7,7 +7,9 @@ helper_method :current_user
 def current_user
   if session["access_token"]!= nil
        @current_user= session["access_token"] 
-       
+       @name=Octokit::Client.new(:access_token => @current_user)
+       @name=@name.login
+       #puts @name.login
     end
     
   end

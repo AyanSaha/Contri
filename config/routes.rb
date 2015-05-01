@@ -4,10 +4,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'repo#analyse'
+  root 'repo#index'
   post 'repo/analyse' => 'repo#analyse'
   get 'repo/omni' => 'repo#omni'
-  #get '/signout' => 'sessions#destroy', as: :signout
+  get "/auth/github/callback" => "repo#create"
+  get '/signout' => 'repo#destroy', as: :signout
  
   # Example of regular route:
      #get 'products/:id' => 'catalog#view'
