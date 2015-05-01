@@ -23,4 +23,4 @@ test:
 
 production:
   <<: *default
-  database: contri_production
+  database: contri_product

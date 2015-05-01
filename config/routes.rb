@@ -6,10 +6,16 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'repo#index'
   post 'repo/analyse' => 'repo#analyse'
+<<<<<<< HEAD
   get 'repo/omni' => 'repo#omni'
   get "/auth/github/callback" => "repo#create"
   get '/signout' => 'repo#destroy', as: :signout
  
+=======
+  get "/auth/:provider/callback" => "repo#create"
+  get '/signout' => 'repo#destroy', as: :signout
+  #get 'repo/show' => 'repo#show'
+>>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
   # Example of regular route:
      #get 'products/:id' => 'catalog#view'
 
