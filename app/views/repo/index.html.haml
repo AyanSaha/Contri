@@ -1,6 +1,5 @@
 %h2 Find efforts in git hub
 - if current_user
-<<<<<<< HEAD
  = "Welcome #{@name.login}"
  = link_to "Signout", {controller: '/repo' , action: 'destroy'}
 - else
@@ -8,13 +7,8 @@
 
  
 .overlay
-=======
- = "Welcome #{current_user.name}"
- = link_to "Signout", signout_path
-- else
- = link_to "Sign in with Github", "/auth/github"
-.overlays
->>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
+
+ 
  
  %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post'}
   %p Paste the github repository link to monitor

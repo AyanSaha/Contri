@@ -1,5 +1,4 @@
 %h2 Details
-<<<<<<< HEAD
 <div id="myfirstchart" style="height: 250px;">
  
 </div>
@@ -7,19 +6,10 @@
   Repositories of:
   %b 
   =@user.name 
- 
-=======
-- if @repos
-  Repositories of:
-  %i 
-  =@user.name 
- 
->>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
   
   - @repos.each do |repo|
     %br
     =repo.name
-<<<<<<< HEAD
 - if @contribs
   Contributors are:
   - @contribs.each do |contributors|
@@ -27,7 +17,4 @@
     
     =contributors.login
   
-=======
-  
 
->>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
