@@ -1,0 +1,10 @@
+== README
+
+Application for monitoring github activity .
+*Ruby version-2.1.2
+*MySQL database used
+
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
