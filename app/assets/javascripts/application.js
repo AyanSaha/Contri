@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_raphael
-//= require_morris
+//= require raphael
+//= require morris
 //= require_tree .

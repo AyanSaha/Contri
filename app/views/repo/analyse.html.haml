@@ -1,7 +1,7 @@
 %h2 Details
-<div id="myfirstchart" style="height: 250px;">
- 
-</div>
+%br
+  = content_tag :div, '', id: 'repo_chart', height: 500, data: {repo: @repos}
+
 - if @repos
   Repositories of:
   %b 
@@ -16,5 +16,4 @@
     %b
     
     =contributors.login
-  
 

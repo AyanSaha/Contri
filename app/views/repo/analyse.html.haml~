@@ -1,31 +1,18 @@
 %h2 Details
-<<<<<<< HEAD
-<div id="myfirstchart" style="height: 250px;">
- <p>Inside myfirstchart</p>
-</div>
+
 - if @repos
   Repositories of:
   %b 
-=======
-- if @repos
-  Repositories of:
-  %i 
->>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
   =@user.name 
- 
   
   - @repos.each do |repo|
     %br
     =repo.name
-<<<<<<< HEAD
 - if @contribs
   Contributors are:
   - @contribs.each do |contributors|
     %b
     
     =contributors.login
-  
-=======
-  
-
->>>>>>> ccaeed13cb169915fe90c446bb71f39b86c9df21
+%br
+  = content_tag :div, '', id: 'repo_chart', height: 500, data: {repo: @repos}
