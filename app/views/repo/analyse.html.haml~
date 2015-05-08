@@ -1,4 +1,6 @@
 %h2 Details
+%br
+  = content_tag :div, '', id: 'repo_chart', height: 500, data: {repo: @repo_attr}
 
 - if @repos
   Repositories of:
@@ -14,5 +16,4 @@
     %b
     
     =contributors.login
-%br
-  = content_tag :div, '', id: 'repo_chart', height: 500, data: {repo: @repos}
+

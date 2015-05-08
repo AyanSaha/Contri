@@ -1,5 +1,5 @@
 jQuery ->
- Morris.Line
+ Morris.Bar
   element: 'repo_chart'
   data: $('#repo_chart').data('repo')
   xkey: 'name'

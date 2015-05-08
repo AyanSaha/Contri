@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  github_milestone_id: 1
+  number: 1
+  title: MyString
+  open_issues: 1
+  closed_issues: 1
+  state: MyString
+  created_at: 2015-05-08 14:22:08
+  updated_at: 2015-05-08 14:22:08
+  due_on: 2015-05-08 14:22:08
+  closed_at: 2015-05-08 14:22:08
+  milestone_creator_id: 1
+
+two:
+  github_milestone_id: 1
+  number: 1
+  title: MyString
+  open_issues: 1
+  closed_issues: 1
+  state: MyString
+  created_at: 2015-05-08 14:22:08
+  updated_at: 2015-05-08 14:22:08
+  due_on: 2015-05-08 14:22:08
+  closed_at: 2015-05-08 14:22:08
+  milestone_creator_id: 1
