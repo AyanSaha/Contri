@@ -52,17 +52,17 @@ end
    if repo.has_issues == true
 	    issue=Octokit.issues("#{user_name}/#{repo_name}")
 	     issue.each do |i|
-			 assignee_id = nil
+			 
 			 @user = User.find_or_create_by(:github_user_id => i.user.id, :github_user_login => i.user.login, :github_user_type => i.user.type)
 			 #check for assignee_id ,if present store its details in Users table
-			 if !(i.assignee.nil)?
-				 binding.pry
+			 if !(i.assignee.nil?)
+				 assignee_id=nil
 			#	#store details of assignee in users tables
-				  assign = User.find_or_create_by(:github_user_id => i.assignee.id, :github_user_login => i.assignee.login,:github_user_type => i.assignee.type)
-		          assignee_id = assign.id	
+				  @a = User.find_or_create_by(:github_user_id => i.assignee.id, :github_user_login => i.assignee.login,:github_user_type => i.assignee.type)
+		          assignee_id = @a.id	
 			end
-			 @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => i.milestone.id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => user)
-	           i.lbls.each do |l|
+			 @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => i.milestone.id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => @user)
+	           i.labels.each do |l|
 				   label=@repository.labels.find_by(:name => l.name,:color => l.color)
 				   IssueLabel.find_or_create_by(:issue_id => @issue_table.id,:label_id => label.id,:repository_id =>@repository.id)
 			   end
