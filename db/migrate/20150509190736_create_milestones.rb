@@ -11,9 +11,12 @@ class CreateMilestones < ActiveRecord::Migration
       t.datetime :updated_at
       t.datetime :due_on
       t.datetime :closed_at
-      t.integer :milestone_creator_id
+      t.references :repository, index: true
+      t.references :user, index: true
 
       t.timestamps null: false
     end
+    add_foreign_key :milestones, :repositories
+    add_foreign_key :milestones, :users
   end
 end

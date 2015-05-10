@@ -14,19 +14,24 @@ end
      user_name = url.split('/')[3]
      repo_name = url.split('/')[4]
      repo_name = repo_name.split('.')[0]
-     puts user_name
-     puts repo_name
-     octokit_config
-     # user=User.create(:login => user_name)
-     @repo=Octokit.repository("#{user_name}/#{repo_name}")
+     repo=Octokit.repository("#{user_name}/#{repo_name}")
      @issue=Octokit.issues("#{user_name}/#{repo_name}")
       @milestones=Octokit.list_milestones("#{user_name}/#{repo_name}")
-    # binding.pry
-     Repository.create(:github_repository_id =>@repo.id,:name =>@repo.name,:full_name => @repo.full_name,:created_at => @repo.created_at,:updated_at => @repo.updated_at,:pushed_at => @repo.pushed_at,:has_issues => @repo.has_issues,:lang => @repo.language,:open_issues_count => @repo.open_issues_count,:subscribers_count => @repo.subscribers_count ,:repository_owner_id =>@repo.owner.id)   
+      @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
+      binding.pry
+      @user = User.find_or_create_by(:github_user_id => repo.owner.id, :github_user_login => repo.owner.login, :github_user_type => repo.owner.type)
+     @repository = Repository.find_or_create_by(:github_repository_id => repo.id, :name => repo.name, :full_name => repo.full_name, :private => repo.private, :created_at => repo.created_at, :updated_at => repo.updated_at, :pushed_at => repo.pushed_at, :language => repo.language, :has_issues => repo.has_issues, :open_issues_count => repo.open_issues_count, :subscribers_count => repo.subscribers_count, :user_id => @user)
+      #read milestones and store milestones details in users and milestones_tables
+       @milestones.each do |m|
+          #store user details of the milestones creator
+           @user = User.find_or_create_by(:github_user_id => m.creator.id, :github_user_login => m.creator.login, :github_user_type => m.creator.type)
+         #now linkng of milestones table with repositories table
+          @miles_table= @repository.milestones.find_or_create_by(:github_milestone_id => m.id, :number => m.number, :title => m.title, :open_issues => m.open_issues, :closed_issues => m.closed_issues, :state => m.state, :created_at => m.created_at, :updated_at => m.updated_at, :due_on => m.due_on, :closed_at => m.closed_at, :user_id => @user)
+          end
      #@repos.each do |s|
 	#@array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:fork => s.fork})
      #end
- 
+     
     
     # @milestones_attr = []
     #@milestones.each do |a|

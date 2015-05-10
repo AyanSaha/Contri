@@ -1,4 +1,5 @@
 class Label < ActiveRecord::Base
-has_and_belongs_to :issues
-belongs_to :repository
+  belongs_to :repository
+has_many :issue_labels
+has_many :issues, :through => :issue_labels
 end

@@ -35,6 +35,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+ENV['GITHUB_KEY']="23b7ff218482e1dda8fe"
+ ENV['GITHUB_SECRET']="f514e21364160d4cd16caf4965f0eeaf1e933fc7"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

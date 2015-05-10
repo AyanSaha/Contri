@@ -5,25 +5,25 @@ one:
   name: MyString
   full_name: MyString
   private: false
-  created_at: 2015-05-08 14:21:40
-  updated_at: 2015-05-08 14:21:40
-  pushed_at: 2015-05-08 14:21:40
+  created_at: 2015-05-10 00:34:16
+  updated_at: 2015-05-10 00:34:16
+  pushed_at: 2015-05-10 00:34:16
   language: MyString
   has_issues: false
   open_issues_count: 1
   subscribers_count: 1
-  repository_owner_id: 1
+  user_id: 
 
 two:
   github_repository_id: 1
   name: MyString
   full_name: MyString
   private: false
-  created_at: 2015-05-08 14:21:40
-  updated_at: 2015-05-08 14:21:40
-  pushed_at: 2015-05-08 14:21:40
+  created_at: 2015-05-10 00:34:16
+  updated_at: 2015-05-10 00:34:16
+  pushed_at: 2015-05-10 00:34:16
   language: MyString
   has_issues: false
   open_issues_count: 1
   subscribers_count: 1
-  repository_owner_id: 1
+  user_id: 

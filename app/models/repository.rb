@@ -1,6 +1,7 @@
 class Repository < ActiveRecord::Base
-has_many :issues,dependent: :destroy
-has_many :milestones,dependent: :destroy
-has_many :lables,dependent: :destroy
-has_many :contributors,dependent: :destroy
+  belongs_to :user
+has_many :milestones
+has_many :labels
+has_many :issues
+has_many :contributors
 end
