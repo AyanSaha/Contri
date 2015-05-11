@@ -80,6 +80,8 @@ GEM
     haml (4.0.6)
       tilt
     hashie (3.4.1)
+    highcharts-rails (4.1.5)
+      railties (>= 3.1)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.12)
@@ -205,6 +207,7 @@ DEPENDENCIES
   github_api
   github_webhook
   haml
+  highcharts-rails
   jbuilder (~> 2.0)
   jquery-rails
   mysql

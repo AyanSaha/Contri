@@ -14,8 +14,14 @@ end
      user_name = url.split('/')[3]
      repo_name = url.split('/')[4]
      repo_name = repo_name.split('.')[0]
+     #for morris
+     repos=Octokit.repositories("#{user_name}")
      repo=Octokit.repository("#{user_name}/#{repo_name}")
-    
+    # binding.pry
+     @array =[]
+    repos.each do |s|
+	 @array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:fork => s.fork})
+     end
       @milestones=Octokit.list_milestones("#{user_name}/#{repo_name}")
       @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
       @user = User.find_or_create_by(:github_user_id => repo.owner.id, :github_user_login => repo.owner.login, :github_user_type => repo.owner.type)
@@ -28,9 +34,7 @@ end
           @miles_table= @repository.milestones.find_or_create_by(:github_milestone_id => m.id, :number => m.number, :title => m.title, :open_issues => m.open_issues, :closed_issues => m.closed_issues, :state => m.state, :created_at => m.created_at, :updated_at => m.updated_at, :due_on => m.due_on, :closed_at => m.closed_at, :user_id => @user)
         
           end
-     #@repos.each do |s|
-	#@array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:fork => s.fork})
-     #end
+     
      commits=Octokit.commits_since("#{user_name}/#{repo_name}",(Date.today - 15).to_s)
      #calculate the individual commit and store that in contributor table
      @contribs.each do |cont|
@@ -55,13 +59,23 @@ end
 			 
 			 @user = User.find_or_create_by(:github_user_id => i.user.id, :github_user_login => i.user.login, :github_user_type => i.user.type)
 			 #check for assignee_id ,if present store its details in Users table
-			 if !(i.assignee.nil?)
-				 assignee_id=nil
+			 assignee_id=nil
+			 milestone_id=nil
+			
+				 if !(i.assignee.nil?)
+					@a = User.find_or_create_by(:github_user_id => i.assignee.id, :github_user_login => i.assignee.login,:github_user_type => i.assignee.type)
+		             assignee_id = @a.id
+				 end
+				 
 			#	#store details of assignee in users tables
-				  @a = User.find_or_create_by(:github_user_id => i.assignee.id, :github_user_login => i.assignee.login,:github_user_type => i.assignee.type)
-		          assignee_id = @a.id	
-			end
-			 @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => i.milestone.id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => @user)
+				  	
+	
+			 if !(i.milestone.nil?)
+				@mils=@repository.milestones.find_by(:github_milestone_id => i.milestone.id)
+				milestone_id=@mils.id
+			 end
+			 
+			 @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => milestone_id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => @user)
 	           i.labels.each do |l|
 				   label=@repository.labels.find_by(:name => l.name,:color => l.color)
 				   IssueLabel.find_or_create_by(:issue_id => @issue_table.id,:label_id => label.id,:repository_id =>@repository.id)
