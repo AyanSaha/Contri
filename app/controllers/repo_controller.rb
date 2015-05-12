@@ -19,8 +19,15 @@ end
      repo=Octokit.repository("#{user_name}/#{repo_name}")
     # binding.pry
      @array =[]
+     @ydata= []
+     @xdata= []
+     @array1=[]
+     @xdata1 =[]
     repos.each do |s|
-	 @array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:fork => s.fork})
+	
+	 @array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:subscriber_count => s.subscriber_count})
+    @xdata.push(s.open_issues_count)
+     @ydata.push(s.name)
      end
       @milestones=Octokit.list_milestones("#{user_name}/#{repo_name}")
       @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
@@ -47,6 +54,9 @@ end
     #store contributor details in user and contributors table
     @user=User.find_or_create_by(:github_user_id => cont.id,:github_user_login => cont.login,:github_user_type => cont.type)
     @contribs_table=@repository.contributors.find_or_create_by(:total_contributions => cont.contributions,:recent_contributions => commit_count, :repository_id => cont.id,:user_id => @user)
+  #  @array1.push(:name => cont.login,:contri_total =>cont.contributions)
+   # @xdata1.push(cont.login)
+   # @ydata1.push(cont.contributions)
 end
      lbls = Octokit.labels("#{user_name}/#{repo_name}")
      lbls.each do |lbl|
@@ -75,10 +85,10 @@ end
 				milestone_id=@mils.id
 			 end
 			 
-			 @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => milestone_id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => @user)
+			# @issue_table = @repository.issues.find_or_create_by(:github_issue_id => i.id, :number => i.number, :title => i.title, :state => i.state, :issue_assignee_id => assignee_id, :milestone_id => milestone_id, :created_at => i.created_at, :updated_at => i.updated_at, :closed_at => i.closed_at,:user_id => @user)
 	           i.labels.each do |l|
 				   label=@repository.labels.find_by(:name => l.name,:color => l.color)
-				   IssueLabel.find_or_create_by(:issue_id => @issue_table.id,:label_id => label.id,:repository_id =>@repository.id)
+				  # IssueLabel.find_or_create_by(:issue_id => @issue_table.id,:label_id => label.id,:repository_id =>@repository.id)
 			   end
 		 end
 	

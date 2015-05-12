@@ -1,6 +1,7 @@
 %h2 Details
 %br
-  = content_tag :div, '', id: 'repo_chart', height: 500, data: {repo: @array}
+  = content_tag :div, '', id: 'repo_chart', data: {ydata: @ydata, xdata: @xdata}
+  
   %button#print PDF
 
 - if @repos
