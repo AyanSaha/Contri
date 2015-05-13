@@ -17,20 +17,27 @@ end
      #for morris
      repos=Octokit.repositories("#{user_name}")
      repo=Octokit.repository("#{user_name}/#{repo_name}")
+      @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
+      
+      #binding.pry
     # binding.pry
      @array =[]
      @ydata= []
      @xdata= []
      @array1=[]
-     @xdata1 =[]
+     @contribs.each do |c|
+		 @array1.push( [c.login,c.contributions])
+	 end
     repos.each do |s|
-	
 	 @array.push({:name => s.name,:open_issues_count => s.open_issues_count,:owner_login =>s.owner.login,:created_at => s.created_at,:updated_at =>s.updated_at,:pushed_at => s.pushed_at,:lang => s.language,:subscriber_count => s.subscriber_count})
-    @xdata.push(s.open_issues_count)
+    
+     @xdata.push(s.open_issues_count)
      @ydata.push(s.name)
+	
      end
       @milestones=Octokit.list_milestones("#{user_name}/#{repo_name}")
-      @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
+     
+    
       @user = User.find_or_create_by(:github_user_id => repo.owner.id, :github_user_login => repo.owner.login, :github_user_type => repo.owner.type)
      @repository = Repository.find_or_create_by(:github_repository_id => repo.id, :name => repo.name, :full_name => repo.full_name, :private => repo.private, :created_at => repo.created_at, :updated_at => repo.updated_at, :pushed_at => repo.pushed_at, :language => repo.language, :has_issues => repo.has_issues, :open_issues_count => repo.open_issues_count, :subscribers_count => repo.subscribers_count, :user_id => @user)
       #read milestones and store milestones details in users and milestones_tables
@@ -54,9 +61,6 @@ end
     #store contributor details in user and contributors table
     @user=User.find_or_create_by(:github_user_id => cont.id,:github_user_login => cont.login,:github_user_type => cont.type)
     @contribs_table=@repository.contributors.find_or_create_by(:total_contributions => cont.contributions,:recent_contributions => commit_count, :repository_id => cont.id,:user_id => @user)
-  #  @array1.push(:name => cont.login,:contri_total =>cont.contributions)
-   # @xdata1.push(cont.login)
-   # @ydata1.push(cont.contributions)
 end
      lbls = Octokit.labels("#{user_name}/#{repo_name}")
      lbls.each do |lbl|
