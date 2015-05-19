@@ -1,14 +1,14 @@
 <h2>Find efforts in git hub</h2>
- <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Username:") %>
-  <%= text_field_tag(:q) %>
- <p>
- <%= label_tag(:r, "Repository:") %>
- <%= text_field_tag(:r) %>
+<%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:q, "Username:") %>
+    <%= text_field_tag(:q) %>
+    <p>
+      <%= label_tag(:r, "Repository:") %>
+      <%= text_field_tag(:r) %>
 
-  </p>
- <p>
- <%= submit_tag("Search") %>
- </p>
+    </p>
+    <p>
+      <%= submit_tag("Search") %>
+    </p>
 <% end %>
 

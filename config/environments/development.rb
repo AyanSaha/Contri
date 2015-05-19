@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
@@ -35,10 +35,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-ENV['GITHUB_KEY']="23b7ff218482e1dda8fe"
- ENV['GITHUB_SECRET']="f514e21364160d4cd16caf4965f0eeaf1e933fc7"
+  ENV['GITHUB_KEY']="23b7ff218482e1dda8fe"
+  ENV['GITHUB_SECRET']="f514e21364160d4cd16caf4965f0eeaf1e933fc7"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
- 
+
 end

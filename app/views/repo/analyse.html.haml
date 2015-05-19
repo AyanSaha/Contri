@@ -2,11 +2,12 @@
 %br
   = content_tag :div, '', id: 'container',  data: {contr:@array1}
   = content_tag :div, '', id: 'repo_chart', data: {ydata:@ydata,xdata: @xdata}
+  = content_tag :div, '', id: 'container2', data: {pie:@labeldata}
 - if @repos
   Repositories of:
-  %b 
+  %b
   =@user.name 
-  
+
   - @repos.each do |repo|
     %br
     =repo.name
@@ -14,6 +15,6 @@
   Contributors are:
   - @contribs.each do |contributors|
     %b
-    
+
     =contributors.login
 

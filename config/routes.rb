@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get 'repo/omni' => 'repo#omni'
   get "/auth/github/callback" => "repo#create"
   get '/signout' => 'repo#destroy', as: :signout
- 
+
   # Example of regular route:
-     #get 'products/:id' => 'catalog#view'
+  #get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

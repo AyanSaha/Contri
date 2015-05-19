@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-has_many :repositories
+  has_many :repositories
 end

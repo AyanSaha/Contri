@@ -10,26 +10,27 @@ $ ->
       plotBackgroundColor: null
       plotBorderWidth: null
       plotShadow: false
-    title: text: 'Contributions of users'
-    tooltip: pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    plotOptions: pie:
-      allowPointSelect: true
-      cursor: 'pointer'
-      dataLabels:
-        enabled: true
-        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-        style: color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
-    series: [ {
+    title:
+      text: 'Contributions of users'
+    tooltip:
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    plotOptions:
+      pie:
+        allowPointSelect: true
+        cursor: 'pointer'
+        dataLabels:
+          enabled: true
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          style:
+            color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
+    series: [{
       type: 'pie'
       name: 'Browser share'
       data: $('#container').data('contr')
-        
-      
-        
-        
-      
-    } ]
-  
+
+
+    }]
+
   $('#repo_chart').highcharts
     title:
       text: "Github repositories analysis"
@@ -50,7 +51,7 @@ $ ->
         value: 0
         width: 1
         color: "#808080"
-       ]
+      ]
 
     tooltip:
       valueSuffix: ""
@@ -66,7 +67,33 @@ $ ->
       name: "Issues"
       data: $('#repo_chart').data('xdata')
     ]
-  chart=$("#repo_chart").highcharts();
+  chart = $("#repo_chart").highcharts();
   chart.exportChart
     type: 'application/pdf'
-    filename: 'Issues'      
+    filename: 'Issues'
+
+  $('#container2').highcharts
+    chart:
+      plotBackgroundColor: null
+      plotBorderWidth: null
+      plotShadow: false
+    title:
+      text: 'Issues with label'
+    tooltip:
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    plotOptions:
+      pie:
+        allowPointSelect: true
+        cursor: 'pointer'
+        dataLabels:
+          enabled: true
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+          style:
+            color: Highcharts.theme and Highcharts.theme.contrastTextColor or 'black'
+    series: [{
+      type: 'pie'
+      name: 'Browser share'
+      data: $('#container2').data('pie')
+
+
+    }]
