@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'repo/omni' => 'repo#omni'
   get "/auth/github/callback" => "repo#create"
   get '/signout' => 'repo#destroy', as: :signout
-
+ get "/payload" => 'repo#webhook'
   # Example of regular route:
   #get 'products/:id' => 'catalog#view'
 

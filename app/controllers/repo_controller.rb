@@ -87,12 +87,17 @@ class RepoController < ApplicationController
         if ((IssueLabel.where(:repository_id => @repository.id, :label_id => label.id)).count > 0)
             @labeldata.push([label.name, (IssueLabel.where(:repository_id => @repository.id, :label_id => label.id)).count])
         end
-      
+
       end
 
+      Ngrok::Tunnel.start(port: 3000)
+      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/push")," http://5be86f16.ngrok.io/payload ")
     end
   end
-
+def webhook
+  puts "webhook method called"
+  end
+end
   def omni
     octokit_config
     redirect_to @client.authorize_url(ENV['GITHUB_KEY'], :scope => "repo")
