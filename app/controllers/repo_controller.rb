@@ -1,6 +1,6 @@
 class RepoController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, :only => [:analyse]
+  skip_before_action :verify_authenticity_token, :only => [:analyse,:webhook]
 
   def index
     if !(session[:access_token].nil?)
@@ -90,14 +90,14 @@ class RepoController < ApplicationController
 
       end
 
-      Ngrok::Tunnel.start(port: 3000)
-      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/push")," http://5be86f16.ngrok.io/payload ")
+      #Ngrok::Tunnel.start(port: 3000)
+      octokit_config
+      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/push"," http://fdc91ef7.ngrok.io/payload ")
     end
   end
-def webhook
-  puts "webhook method called"
+ def webhook
+         puts "webhook method called"
   end
-end
   def omni
     octokit_config
     redirect_to @client.authorize_url(ENV['GITHUB_KEY'], :scope => "repo")
@@ -118,14 +118,14 @@ end
   private
 
   def octokit_config
+    @client = Octokit::Client.new
     Octokit.configure do |c|
-      @client = Octokit::Client.new \
-                :client_id => ENV['GITHUB_KEY'],
-                :client_secret => ENV['GITHUB_SECRET']
+          c.client_id = ENV['GITHUB_KEY'],
+          c.client_secret = ENV['GITHUB_SECRET']
       if session["access_token"] != nil
         c.access_token = session["access_token"]
       end
     end
   end
-
 end
+
