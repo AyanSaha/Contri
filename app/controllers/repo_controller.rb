@@ -14,8 +14,8 @@ class RepoController < ApplicationController
       user_name = url.split('/')[3]
       repo_name = url.split('/')[4]
       repo_name.gsub! '.git', ''
-      repos=Octokit.repositories("#{user_name}")
-      repo=Octokit.repository("#{user_name}/#{repo_name}")
+      @repos=Octokit.repositories("#{user_name}")
+      @repo=Octokit.repository("#{user_name}/#{repo_name}")
       @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
       @array =[]
       @ydata= []
@@ -24,7 +24,7 @@ class RepoController < ApplicationController
       @contribs.each do |c|
         @array1.push([c.login, c.contributions])
       end
-      repos.each do |s|
+      @repos.each do |s|
         @array.push({:name => s.name, :open_issues_count => s.open_issues_count, :owner_login => s.owner.login, :created_at => s.created_at, :updated_at => s.updated_at, :pushed_at => s.pushed_at, :lang => s.language, :subscriber_count => s.subscriber_count})
         @xdata.push(s.open_issues_count)
         @ydata.push(s.name)
@@ -89,14 +89,31 @@ class RepoController < ApplicationController
         end
 
       end
-
-      #Ngrok::Tunnel.start(port: 3000)
-      octokit_config
-      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/push"," http://fdc91ef7.ngrok.io/payload ")
+       if(Ngrok::Tunnel.stopped?)
+          Ngrok::Tunnel.start(port: 3000)
+       end
+       octokit_config
+      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/*.json"," #{Ngrok::Tunnel.ngrok_url}/payload")
+       #a=@client.hooks('AyanSaha/Contri')
+      #binding.pry
     end
   end
  def webhook
-         puts "webhook method called"
+   #code for enry of new data in their tables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   end
   def omni
     octokit_config
