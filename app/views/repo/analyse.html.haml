@@ -4,10 +4,7 @@
   = content_tag :div, '', id: 'repo_chart', data: {ydata:@ydata,xdata: @xdata}
   = content_tag :div, '', id: 'container2', data: {pie:@labeldata}
 - if @repos
-  Repositories of:
-  %b
-  =@user.name 
-
+  Repositories are:
   - @repos.each do |repo|
     %br
     =repo.name

@@ -5,6 +5,7 @@ class RepoController < ApplicationController
   def index
     if !(session[:access_token].nil?)
       @name=Octokit::Client.new(:access_token => session[:access_token])
+      
     end
   end
 
@@ -15,7 +16,7 @@ class RepoController < ApplicationController
       repo_name = url.split('/')[4]
       repo_name.gsub! '.git', ''
       @repos=Octokit.repositories("#{user_name}")
-      @repo=Octokit.repository("#{user_name}/#{repo_name}")
+      repo=Octokit.repository("#{user_name}/#{repo_name}")
       @contribs=Octokit.contribs("#{user_name}/#{repo_name}")
       @array =[]
       @ydata= []
@@ -94,26 +95,11 @@ class RepoController < ApplicationController
        end
        octokit_config
       @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/*.json"," #{Ngrok::Tunnel.ngrok_url}/payload")
-       #a=@client.hooks('AyanSaha/Contri')
-      #binding.pry
-    end
+    end     
   end
+
  def webhook
    #code for enry of new data in their tables
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   end
   def omni
     octokit_config
@@ -145,4 +131,3 @@ class RepoController < ApplicationController
     end
   end
 end
-

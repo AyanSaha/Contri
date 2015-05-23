@@ -108,6 +108,7 @@ GEM
     ngrok-tunnel (2.0.16)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    nprogress-rails (0.1.6.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   jquery-rails
   mysql
   ngrok-tunnel
+  nprogress-rails
   octokit (~> 3.0)
   omniauth-github
   pry

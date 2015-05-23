@@ -1,0 +1,2 @@
+NProgress.start();
+NProgress.done();

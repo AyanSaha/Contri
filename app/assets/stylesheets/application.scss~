@@ -1,5 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "custom";
-@import 'nprogress';
-@import 'nprogress-bootstrap';
+*= require nprogress
+*= require nprogress-bootstrap

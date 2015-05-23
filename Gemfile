@@ -17,6 +17,7 @@ gem "omniauth-github"
 gem "github_webhook"
 gem "highcharts-rails"
 gem "ngrok-tunnel"
+gem "nprogress-rails"
 gem "pry", group: :development
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

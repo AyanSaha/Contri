@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require nprogress
 //= require highcharts
 //= require exporting
 //= require_tree .
+
+$(document).ready(function() {
+
+NProgress.inc(0.4);
+
+});
