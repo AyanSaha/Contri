@@ -9,9 +9,8 @@
 .overlay
 
 
-  %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post'}
+  %form{:controller => '/repo', :action => '/repo/analyse', :method => 'post', :remote => true}
     %p Paste the github repository link to monitor
     %input#r{:name => "r" , :type => "text", :size => "35"}
 
-      %input{:type => "submit", :value => "Monitor"}
-
+      %button.btn.btn-primary{:type => "submit"} Monitor

@@ -90,16 +90,25 @@ class RepoController < ApplicationController
         end
 
       end
-       if(Ngrok::Tunnel.stopped?)
-          Ngrok::Tunnel.start(port: 3000)
+        if (Ngrok::Tunnel.ngrok_url == ''|| Ngrok::Tunnel.ngrok_url == nil) 
+             Ngrok::Tunnel.stop
+             binding.pry
+             
        end
+      Ngrok::Tunnel.start(port: 3000)
        octokit_config
+       hooks1=@client.hooks("#{user_name}/#{repo_name}")
+       binding.pry
+       hooks1.each do |h1|
+         @client.remove_hook("#{user_name}/#{repo_name}",h1.id)
+       end
+      # octokit_config
       @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/*.json"," #{Ngrok::Tunnel.ngrok_url}/payload")
     end     
   end
 
  def webhook
-   #code for enry of new data in their tables
+   binding.pry
   end
   def omni
     octokit_config
