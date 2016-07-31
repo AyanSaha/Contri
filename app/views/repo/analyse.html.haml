@@ -1,17 +1,71 @@
+:javascript
+  $(function () {
+      $('#container3').highcharts({
+          chart: {
+              type: 'column'
+          },
+          title: {
+              text: 'FCC Provided PSAPS'
+          },
+          xAxis: {
+              categories: $('#container3').data('xaxisdata')
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: 'Total fruit consumption'
+              },
+              stackLabels: {
+                  enabled: true,
+                  style: {
+                      fontWeight: 'bold',
+                      color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                  }
+              }
+          },
+          legend: {
+              align: 'right',
+              x: -30,
+              verticalAlign: 'top',
+              y: 25,
+              floating: true,
+              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+              borderColor: '#CCC',
+              borderWidth: 1,
+              shadow: false
+          },
+          tooltip: {
+              headerFormat: '<b>{point.x}</b><br/>',
+              pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+          },
+          plotOptions: {
+              column: {
+                  stacking: 'normal',
+                  dataLabels: {
+                      enabled: true,
+                      color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                      style: {
+                          textShadow: '0 0 3px black'
+                      }
+                  }
+              }
+          },
+          series: [{
+            name: 'Certifiable',
+            data: $('#container3').data('certifiable')
+        }, {
+            name: 'Certified',
+            data: $('#container3').data('certified')
+        
+        }]
+      });
+  });
+
 %h2 Details
 %br
   = content_tag :div, '', id: 'container',  data: {contr:@array1}
   = content_tag :div, '', id: 'repo_chart', data: {ydata:@ydata,xdata: @xdata}
   = content_tag :div, '', id: 'container2', data: {pie:@labeldata}
-- if @repos
-  Repositories are:
-  - @repos.each do |repo|
-    %br
-    =repo.name
-- if @contribs
-  Contributors are:
-  - @contribs.each do |contributors|
-    %b
+  = content_tag :div, '', id: 'container3', data: {xaxisdata:@dateofcompliance,certifiable:@cer_array,certified:@cert_array}
 
-    =contributors.login
 

@@ -1,6 +1,6 @@
 class RepoController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, :only => [:analyse,:webhook]
+  skip_before_action :verify_authenticity_token, :only => [:analyse]
 
   def index
     if !(session[:access_token].nil?)
@@ -90,25 +90,27 @@ class RepoController < ApplicationController
         end
 
       end
-        if (Ngrok::Tunnel.ngrok_url == ''|| Ngrok::Tunnel.ngrok_url == nil) 
-             Ngrok::Tunnel.stop
-             binding.pry
+       # if (Ngrok::Tunnel.ngrok_url == ''|| Ngrok::Tunnel.ngrok_url == nil) 
+        #     Ngrok::Tunnel.stop
              
-       end
-      Ngrok::Tunnel.start(port: 3000)
+       @dateofcompliance=['22/05/2015','12/6/2015','13/7/2015','15/8/2015','19/8/2015','20/9/2015','25/11/2015']
+       @cer_array=[5, 3,7,8,4,9,7],
+       @cert_array=[2,2,3,8,3,6,1]      
+       #end
+      #Ngrok::Tunnel.start(port: 3000)
        octokit_config
-       hooks1=@client.hooks("#{user_name}/#{repo_name}")
-       binding.pry
-       hooks1.each do |h1|
-         @client.remove_hook("#{user_name}/#{repo_name}",h1.id)
-       end
+       #hooks1=@client.hooks("#{user_name}/#{repo_name}")
+       
+       #hooks1.each do |h1|
+        # @client.remove_hook("#{user_name}/#{repo_name}",h1.id)
+       #end
       # octokit_config
-      @client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/*.json"," #{Ngrok::Tunnel.ngrok_url}/payload")
+      #@client.subscribe("https://github.com/#{user_name}/#{repo_name}/events/*.json"," #{Ngrok::Tunnel.ngrok_url}/payload")
     end     
   end
 
  def webhook
-   binding.pry
+   
   end
   def omni
     octokit_config

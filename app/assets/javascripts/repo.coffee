@@ -1,9 +1,3 @@
-###
-History.js Core
-@author Benjamin Arthur Lupton <contact@balupton.com>
-@copyright 2010-2011 Benjamin Arthur Lupton <contact@balupton.com>
-@license New BSD License <http://creativecommons.org/licenses/BSD/>
-###
 $ ->
   $('#container').highcharts
     chart:
@@ -68,9 +62,7 @@ $ ->
       data: $('#repo_chart').data('xdata')
     ]
   chart = $("#repo_chart").highcharts();
-  chart.exportChart
-    type: 'application/pdf'
-    filename: 'Issues'
+  
 
   $('#container2').highcharts
     chart:
@@ -97,3 +89,7 @@ $ ->
 
 
     }]
+
+
+
+ 

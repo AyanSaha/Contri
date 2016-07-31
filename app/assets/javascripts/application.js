@@ -17,8 +17,4 @@
 //= require exporting
 //= require_tree .
 
-$(document).ready(function() {
 
-NProgress.inc(0.4);
-
-});

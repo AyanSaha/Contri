@@ -9,7 +9,7 @@ default: &default
   pool: 5
   timeout: 5000
   username: root
-  password: qwerty
+  #password: qwerty
 development:
   <<: *default
   database: contri_dev
